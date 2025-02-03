@@ -20,6 +20,9 @@ time, mark, audio, video {
   font: inherit;
   /* font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; */
   vertical-align: baseline;
+
+  width: 100%;
+  /* overflow-x: hidden; */
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
@@ -28,6 +31,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
   line-height: 1;
+  overflow-x: hidden;
 }
 ol, ul {
   list-style: none;
@@ -56,10 +60,13 @@ table {
 }
 
 #main {
-  width: 54em;
-  margin: 0px auto;
+  width: 70em;
+  /* margin: 0px auto; */
   position: relative;
   min-height: 100vh;
+  margin-left: auto;
+  margin-right: auto;
+  
 }
 
 a {
@@ -70,6 +77,17 @@ a {
 a:hover {
   text-decoration: none;
   border-bottom: 1px solid rgb(20, 110, 190);
+}
+
+aa {
+  text-decoration: underline;
+  text-decoration-color: gray; /* Subtle gray underline */
+  text-decoration-thickness: 1px; /* Thin underline for subtlety */
+  color: inherit; /* Keeps the text color the same as surrounding text */
+}
+
+aa:hover {
+  text-decoration-color: darkgray; /* Slightly darker gray on hover for a gentle effect */
 }
 
 i {
@@ -86,6 +104,11 @@ h1 {
   font-weight: 500;
 }
 
+hh {
+  font-size: 1.2em;
+  /* line-height: 3em; */
+  font-weight: 500;
+}
 /**************************************************/
 /* Profile image and description. */
 
@@ -95,7 +118,7 @@ h1 {
 }
 
 #intro-text {
-  width: 40em;
+  width: 55em;
   float: left;
 }
 
@@ -190,7 +213,7 @@ h2 {
 }
 
 .list-item p.date {
-  display: inline-block;
+  display: inline;
   width: 3em;
   color: #a0a8b0;
 }
@@ -247,9 +270,9 @@ h2 {
 
 .thumbnail {
 /*  width: 21%;*/
-  width: 18%;
+  width: 25%;
   float: left;
-  margin-right: 2%;
+  margin-right: 3%;
 }
 
 .thumbnail:hover {
@@ -294,7 +317,7 @@ h3 a:hover {
 }
 
 .project-description {
-  width: 80%;
+  width: 72%;
   float: left;
 }
 
