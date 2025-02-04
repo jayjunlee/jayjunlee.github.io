@@ -31,7 +31,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
   line-height: 1;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
 }
 ol, ul {
   list-style: none;
@@ -214,7 +214,7 @@ h2 {
 
 .list-item p.date {
   display: inline;
-  width: 3em;
+  width: 8em;
   color: #a0a8b0;
 }
 
@@ -307,7 +307,7 @@ h3 a:hover {
 }
 
 .publication {
-  margin-bottom: 0.5em;
+  margin-bottom: 0.9em;
 }
 
 .publication p {
@@ -317,6 +317,7 @@ h3 a:hover {
 }
 
 .project-description {
+  margin-top: 0.3em;
   width: 72%;
   float: left;
 }
