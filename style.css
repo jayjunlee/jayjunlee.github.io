@@ -21,7 +21,7 @@ time, mark, audio, video {
   /* font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; */
   vertical-align: baseline;
 
-  width: 100%;
+  /* width: 80%; */
   /* overflow-x: hidden; */
 }
 /* HTML5 display-role reset for older browsers */
@@ -281,6 +281,7 @@ h2 {
 
 .thumbnail img {
   margin-top: 0.4em;
+  margin-bottom: 1.0em;
   border-radius: 5px;
   width: 100%;
   height: 100%;
