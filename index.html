@@ -79,8 +79,8 @@
           <h1>Jayjun Lee</h1>
           <p>
             Welcome! I'm an MS Robotics student at the University of Michigan, where I'm advised by Professor <a href="https://www.mmintlab.com/people/nima-fazeli/">Nima Fazeli</a>. My research focuses on Robot Learning – developing algorithms for robots to perceive and interact with the physical world. These days I'm interested in
-            <span class="clickable" onclick="toggleExplanation()">multi-modal </span>
-            <span class="explanation">(i.e. vision, tactile, F/T, language, audio)</span> 
+            <span class="clickable" onclick="toggleExplanation()">multi-modal</span>
+            <span class="explanation"> (i.e. vision, tactile, F/T, language, audio)</span> 
             perception and learning representations to acquire contact- and force-rich manipulation skills.
 
             <div id="more-bio" style="display: None">
@@ -369,54 +369,48 @@
       var $grid = $('.grid').isotope({
         itemSelector: '.list-item',
         layoutMode: 'fitRows',
-        fitWidth: true, // This makes the grid’s width shrink-to-fit its items.
         transitionDuration: 0,
-        stagger: 10,
-        initLayout: false,
-        getSortData: {
-          name: '.name',
-          symbol: '.symbol',
-          number: '.number parseInt',
-          category: '[data-category]',
-          weight: function(itemElem) {
-            var weight = $(itemElem).find('.weight').text();
-            return parseFloat(weight.replace(/[\(\)]/g, ''));
-          }
-        }
+        stagger: 10
       });
 
-      // Bind filter button click.
-      $('#filters').on( 'click', 'button', function() {
-        var filterValue = $( this ).attr('data-filter');
+      // Wait for all images to load before initializing Isotope
+      $(window).on('load', function() {
+        $grid.isotope('layout');
+      });
+
+      // Bind filter button click
+      $('#filters').on('click', 'button', function() {
+        var filterValue = $(this).attr('data-filter');
         localStorage.setItem('filterValue', filterValue);
         $grid.isotope({ filter: filterValue });
       });
 
-      // Change is-checked class on buttons.
-      $('.button-group').each( function( i, buttonGroup ) {
-        var $buttonGroup = $( buttonGroup );
-        $buttonGroup.on( 'click', 'button', function() {
+      // Change is-checked class on buttons
+      $('.button-group').each(function(i, buttonGroup) {
+        var $buttonGroup = $(buttonGroup);
+        $buttonGroup.on('click', 'button', function() {
           $buttonGroup.find('.is-checked').removeClass('is-checked');
-          $( this ).addClass('is-checked');
+          $(this).addClass('is-checked');
         });
       });
 
       function update_isotope() {
-        // Retrieve cached button click.
-        var defaultFilterValue = localStorage.getItem('filterValue');
-        if (defaultFilterValue == null) {
-          defaultFilterValue = ".publication"
-        }
-        $grid.isotope({ filter: defaultFilterValue });
-        var buttons = document.getElementsByClassName("button");
-        for (var currButton of buttons) {
-          if (currButton.getAttribute('data-filter') == defaultFilterValue) {
-            currButton.classList.add('is-checked');
-          } else {
-            currButton.classList.remove('is-checked');
+        // Retrieve cached button click
+        var defaultFilterValue = localStorage.getItem('filterValue') || ".publication";
+        $grid.isotope({ 
+          filter: defaultFilterValue,
+          // Force a layout update
+          complete: function() {
+            $grid.isotope('layout');
           }
-        }
+        });
+        
+        // Update button states
+        $('.button').each(function() {
+          $(this).toggleClass('is-checked', $(this).attr('data-filter') === defaultFilterValue);
+        });
       }
+
 
       function toggle_bio() {
         var x = document.getElementById("more-bio");
@@ -427,22 +421,28 @@
         }
       }
 
+      // Add layout update after toggling highlights
       function toggle_highlights() {
         var x = document.getElementById("main-highlights");
         var y = document.getElementById("more-highlights");
-        var b = document.getElementById("toggle_highlights_button")
+        var b = document.getElementById("toggle_highlights_button");
+        
         if (y.style.display === "none") {
           x.style.display = "none";
           y.style.display = "block";
-          b.innerHTML = "Show less"
-          update_isotope();
+          b.innerHTML = "Show less";
         } else {
           x.style.display = "block";
           y.style.display = "none";
-          b.innerHTML = "Show more"
-          update_isotope();
+          b.innerHTML = "Show more";
         }
+        
+        // Force layout update after toggle
+        setTimeout(function() {
+          $grid.isotope('layout');
+        }, 100);
       }
+
 
       update_isotope();
 
