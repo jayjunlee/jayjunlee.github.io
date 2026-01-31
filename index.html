@@ -100,6 +100,9 @@
             <hh>News</hh>
             <!--  -->
             <div class="list-item highlight" data-category="highlight">
+              <p class="date">Jan. 2026</p> <a href="https://va2contact.github.io/">VA2Contact</a> is accepted to ICRA 2026 in Vienna, Austria!
+            </div>
+            <div class="list-item highlight" data-category="highlight">
               <p class="date">Sep. 2025</p> I'm co-organizing <a href="https://sites.google.com/view/h2r-corl2025/home">Human-to-Robot</a> workshop at CoRL 2025!
             </div>
             
@@ -111,6 +114,7 @@
               <p class="date">Apr. 2025</p> <a href="https://jayjunlee.github.io/vitascope/">ViTaSCOPE</a> is accepted to RSS 2025 in Los Angeles!
             </div>
 
+            <div id="more-news" style="display: none">
             <div class="list-item highlight" data-category="highlight">
               <p class="date">Jan. 2025</p> <a href="https://rich-language-failure-recovery.github.io/">RACER</a> is accepted to ICRA 2025 in Atlanta!
             </div>
@@ -125,6 +129,11 @@
 
             <div class="list-item highlight" data-category="highlight">
               <p class="date">Sep. 2024</p> <a href="https://www.mmintlab.com/nisp">NISP</a> is accepted to CoRL 2024 in Munich, Germany!</b>
+              </div>
+            </div>
+
+            <div class="list-item highlight" data-category="highlight">
+              <a id="toggle_news_button" href="javascript:toggle_news()">Show more</a>
             </div>            
 
           </p>
@@ -212,6 +221,27 @@
         <!-- Publications -->      
         <div class="list-item publication" data-category="publication">
           <i class="black-text">* indicates equal contribution</i>
+        </div> 
+        
+        <!-- VA Extrinsic Contact Est. -->
+        <div class="list-item publication" data-category="publication">
+          <a href="" class="thumbnail">
+            <img src="images/va_ext_contact_est_compact.jpg" alt="" />
+          </a>
+          <!-- <div class="project-description" style="font-family: Helvetica;"> -->
+          <div class="project-description">
+            <h3><a href="https://www.mmintlab.com/visual_audio_contact_estimation/">Visual-auditory Extrinsic Contact Estimation</a></h3>
+            <!-- <p style="font-family: Helvetica Light;"> -->
+            <p>
+              <script>document.write(xili)</script>*,
+              <script>document.write(jayjun)</script><b style="color: black;">*</b>, and
+              <script>document.write(nima)</script> <br>
+              <a style="color: black; text-decoration: none; text-decoration-style: none;">International Conference on Robotics and Automation (ICRA) 2026</a><br>
+                <a href="https://www.mmintlab.com/visual_audio_contact_estimation/">Webpage</a>&nbsp;&nbsp;&bull;&nbsp;&nbsp;
+                <a href="https://arxiv.org/abs/2409.14608">Paper</a>
+                <br> 
+            </p>
+          </div>
         </div> 
         
         <!-- AimBot -->
@@ -325,27 +355,6 @@
                 <a href="https://spatial-comfort.github.io/">Webpage</a>&nbsp;&nbsp;&bull;&nbsp;&nbsp;
                 <a href="https://arxiv.org/abs/2410.17385">Paper</a>&nbsp;&nbsp;&bull;&nbsp;&nbsp;
                 <a href="https://github.com/sled-group/COMFORT">Code</a>
-                <br> 
-            </p>
-          </div>
-        </div>        
-
-        <!-- VA Extrinsic Contact Est. -->
-        <div class="list-item publication" data-category="publication">
-          <a href="" class="thumbnail">
-            <img src="images/va_ext_contact_est_compact.jpg" alt="" />
-          </a>
-          <!-- <div class="project-description" style="font-family: Helvetica;"> -->
-          <div class="project-description">
-            <h3><a href="https://www.mmintlab.com/visual_audio_contact_estimation/">Visual-auditory Extrinsic Contact Estimation</a></h3>
-            <!-- <p style="font-family: Helvetica Light;"> -->
-            <p>
-              <script>document.write(xili)</script>*,
-              <script>document.write(jayjun)</script><b style="color: black;">*</b>, and
-              <script>document.write(nima)</script> <br>
-                <i>Under review</i><br>
-                <a href="https://www.mmintlab.com/visual_audio_contact_estimation/">Webpage</a>&nbsp;&nbsp;&bull;&nbsp;&nbsp;
-                <a href="https://arxiv.org/abs/2409.14608">Paper</a>
                 <br> 
             </p>
           </div>
@@ -495,6 +504,19 @@
         setTimeout(function() {
           $grid.isotope('layout');
         }, 100);
+      }
+
+      function toggle_news() {
+        var moreNews = document.getElementById("more-news");
+        var btn = document.getElementById("toggle_news_button");
+        
+        if (moreNews.style.display === "none") {
+          moreNews.style.display = "block";
+          btn.innerHTML = "Show less";
+        } else {
+          moreNews.style.display = "none";
+          btn.innerHTML = "Show more";
+        }
       }
 
 
