@@ -12,7 +12,7 @@
     </script>
 
     <!-- Title -->
-    <title>Jayjun Lee - University of Michigan</title>
+    <title>Jayjun Lee</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=1000">
 
@@ -71,38 +71,65 @@
       }
 
       .black-text {
-        color: black;
+        color: var(--text);
       }
     </style>
+
+    <!-- Prevent flash of wrong theme -->
+    <script>
+      (function() {
+        var saved = localStorage.getItem('theme');
+        if (saved === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+      })();
+    </script>
   </head>
 
   <body id="body">
+    <button id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode" title="Toggle dark mode">&#9790;</button>
 
     <div id="main">
       <div id="intro">
         <div id="intro-text">
           <h1>Jayjun Lee</h1>
           <p>
-            Welcome! I'm a PhD student in Robotics at the University of Michigan and a Robotics Research intern at NVIDIA. 
+            Welcome! I'm a PhD student in Robotics at the University of Michigan and a Robotics research intern at the Dexterity team at NVIDIA. 
             I'm fortunate to be advised by Professor <a href="https://www.mmintlab.com/people/nima-fazeli/">Nima Fazeli</a> 
             and to be a member of the <a href="https://www.mmintlab.com/about/">Manipulation and Machine Intelligence (MMINT) Lab</a>. 
-            My research focuses on Robot Learning – developing algorithms for robots to perceive and interact with the physical world. 
+            My research focuses on robot learning and dexterity to develop robots that can perceive and interact with the physical world. 
+            <!-- These days I'm interested in visuo-tactile sensing and sim-to-real reinforcement learning for dexterous manipulation. -->
+            
+            <!-- My research focuses on Robot Learning – developing algorithms for robots to perceive and interact with the physical world. 
             These days I'm interested in
             <span class="clickable" onclick="toggleExplanation()">multi-modal</span>
             <span class="explanation"> (i.e. vision, tactile, F/T, language, audio)</span> 
-            perception and learning representations to acquire contact- and force-rich manipulation skills.
+            perception and learning representations to acquire contact- and force-rich manipulation skills. -->
 
-            <div id="more-bio" style="display: None">
+            <br><br>
+
+            I graduated from Imperial College London where I received my BEng in Electronic and Information Engineering.
+            Previously, I worked with Professor <a href="https://profiles.imperial.ac.uk/a.spiers">Ad Spiers</a> in the <a href="https://www.imperial.ac.uk/manipulation-touch">Manipulation and Touch Lab</a>.
+            I also worked with Professor <a href="https://web.eecs.umich.edu/~chaijy/">Joyce Chai</a> in the <a href="https://sled.eecs.umich.edu/">Situated Language and Embodied Dialogue (SLED) Lab</a> and 
+            Professor <a href="https://bme.umich.edu/people/chestek-cindy/">Cindy Chestek</a> in the <a href="https://chestekresearch.engin.umich.edu/">Cortical Neural Prosthetics Lab</a>.
+
+
+            <!-- <div id="more-bio" style="display: None">
               <br>
-              <p>Jayjun Lee is a 2nd Year MS Robotics student at the <a href="https://robotics.umich.edu/">University of Michigan – Ann Arbor</a>, working in the <a href="https://www.mmintlab.com/about/">Manipulation and Machine Intelligance (MMINT) Lab</a>. Previously, he worked with Prof. Joyce Chai in the Situated Language and Embodied Dialogue (SLED) Lab. He received his Bachelors in Electronic and Information Engineering at <a href="https://www.imperial.ac.uk/electrical-engineering/">Imperial College London</a>, where he was advised by Prof. <a href="https://profiles.imperial.ac.uk/a.spiers">Ad Spiers</a> in the <a href="https://www.imperial.ac.uk/manipulation-touch">Manipulation and Touch Lab</a>. He is broadly interested in robot learning, robotic manipulation, and spatial intelligence.</p>
+              <p>Jayjun Lee is a 2nd Year MS Robotics student at the <a href="https://robotics.umich.edu/">University of Michigan – Ann Arbor</a>, 
+                working in the <a href="https://www.mmintlab.com/about/">Manipulation and Machine Intelligance (MMINT) Lab</a>. 
+                Previously, he worked with Prof. Joyce Chai in the Situated Language and Embodied Dialogue (SLED) Lab. 
+                He received his Bachelors in Electronic and Information Engineering at <a href="https://www.imperial.ac.uk/electrical-engineering/">Imperial College London</a>, 
+                where he was advised by Prof. <a href="https://profiles.imperial.ac.uk/a.spiers">Ad Spiers</a> in the <a href="https://www.imperial.ac.uk/manipulation-touch">Manipulation and Touch Lab</a>. 
+                He is broadly interested in robot learning, robotic manipulation, and spatial intelligence.</p>
             </div>
             <br>
-            <a href="javascript:toggle_bio()">Formal Bio</a>&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="javascript:toggle_bio()">Formal Bio</a>&nbsp;&nbsp;&nbsp;&nbsp; -->
+            <br><br>
             <a href="https://github.com/jayjunlee">Github</a>&nbsp;&nbsp;&nbsp;&nbsp;
             <a href="https://scholar.google.com/citations?user=OhompmUAAAAJ&hl=en">Google Scholar</a>&nbsp;&nbsp;&nbsp;&nbsp;
             <a href="https://x.com/jayjunleee">Twitter</a>
             <br><br>
-            Email: jayjun [at] umich [dot] edu
+            Email: <span id="email-text"></span>
+            <a href="javascript:unscramble_email()" id="unscramble-btn" style="margin-left: 6px; font-size: 0.9em;">[unscramble]</a>
             <br><br>
 
             <!-- <div class="list-item highlight description" data-category="highlight"> -->
@@ -112,7 +139,7 @@
               <p class="date">Jan. 2026</p> <a href="https://va2contact.github.io/">VA2Contact</a> is accepted to ICRA 2026 in Vienna, Austria!
             </div>
             <div class="list-item highlight" data-category="highlight">
-              <p class="date">Jan. 2026</p> I joined <a href="https://www.nvidia.com/en-us/">NVIDIA</a> as a Robotics Research Intern!
+              <p class="date">Jan. 2026</p> I joined the Dexterity team at <a href="https://www.nvidia.com/en-us/">NVIDIA</a> as a Robotics research Intern!
             </div>
             <div class="list-item highlight" data-category="highlight">
               <p class="date">Sep. 2025</p> I'm co-organizing <a href="https://sites.google.com/view/h2r-corl2025/home">Human-to-Robot</a> workshop at CoRL 2025!
@@ -527,6 +554,96 @@
         });
       }
 
+
+      function toggleTheme() {
+        var html = document.documentElement;
+        var btn = document.getElementById('theme-toggle');
+        if (html.getAttribute('data-theme') === 'dark') {
+          html.removeAttribute('data-theme');
+          localStorage.setItem('theme', 'light');
+          btn.innerHTML = '&#9790;';
+        } else {
+          html.setAttribute('data-theme', 'dark');
+          localStorage.setItem('theme', 'dark');
+          btn.innerHTML = '&#9728;';
+        }
+      }
+
+      // Set correct icon on load
+      (function() {
+        var btn = document.getElementById('theme-toggle');
+        if (document.documentElement.getAttribute('data-theme') === 'dark') {
+          btn.innerHTML = '&#9728;';
+        }
+      })();
+
+      var emailTarget = 'jayjun [at] umich [dot] edu';
+
+      function shuffle(arr) {
+        for (var i = arr.length - 1; i > 0; i--) {
+          var j = Math.floor(Math.random() * (i + 1));
+          var tmp = arr[i]; arr[i] = arr[j]; arr[j] = tmp;
+        }
+        return arr;
+      }
+
+      function anagramOf(str) {
+        var letters = [];
+        var spaces = [];
+        for (var i = 0; i < str.length; i++) {
+          if (str[i] === ' ') spaces.push(i);
+          else letters.push(str[i]);
+        }
+        shuffle(letters);
+        var result = [];
+        var li = 0;
+        for (var i = 0; i < str.length; i++) {
+          if (spaces.indexOf(i) !== -1) result.push(' ');
+          else result.push(letters[li++]);
+        }
+        return result;
+      }
+
+      var emailSlots = anagramOf(emailTarget);
+
+      (function() {
+        document.getElementById("email-text").textContent = emailSlots.join('');
+      })();
+
+      function unscramble_email() {
+        var span = document.getElementById("email-text");
+        var btn = document.getElementById("unscramble-btn");
+        btn.style.display = "none";
+
+        var current = emailSlots.slice();
+        var target = emailTarget.split('');
+
+        function step() {
+          var unsolved = [];
+          for (var i = 0; i < target.length; i++) {
+            if (current[i] !== target[i]) unsolved.push(i);
+          }
+          if (unsolved.length === 0) return;
+
+          // Pick a random unsolved position and find its swap partner
+          var idx = unsolved[Math.floor(Math.random() * unsolved.length)];
+          var needed = target[idx];
+          for (var j = 0; j < current.length; j++) {
+            if (j !== idx && current[j] === needed && current[j] !== target[j]) {
+              var tmp = current[idx]; current[idx] = current[j]; current[j] = tmp;
+              break;
+            }
+          }
+          // If no swap partner found, just place it directly (handles duplicates)
+          current[idx] = needed;
+
+          span.textContent = current.join('');
+          if (current.join('') !== emailTarget) {
+            setTimeout(step, 60);
+          }
+        }
+        step();
+      }
 
       function toggle_bio() {
         var x = document.getElementById("more-bio");

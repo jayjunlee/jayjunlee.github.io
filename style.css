@@ -1,3 +1,19 @@
+:root {
+  --bg: #ffffff;
+  --text: #150c21;
+  --text-muted: #a0a8b0;
+  --link: rgb(20, 110, 190);
+  --shadow: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] {
+  --bg: #0d1117;
+  --text: #e2e4e8;
+  --text-muted: #8b949e;
+  --link: #58a6ff;
+  --shadow: rgba(0, 0, 0, 0.4);
+}
+
 /* CSS Reset: http://meyerweb.com/eric/tools/css/reset */
 
 html, body, div, span, applet, object, iframe,
@@ -56,17 +72,18 @@ table {
 .no-underline:visited, 
 .no-underline:active {
   text-decoration: none !important;
-  color: black !important;
+  color: var(--text) !important;
 }
 
 /**************************************************/
 
 #body{
   font-family: 'Asap', roboto, sans-serif;
-  /* font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; */
   font-size: 1em;
   line-height: 1.5em;
-  color: #150c21;
+  color: var(--text);
+  background-color: var(--bg);
+  transition: background-color 0.3s, color 0.3s;
 }
 
 #main {
@@ -81,7 +98,7 @@ table {
 
 a {
   text-decoration: none;
-  color: rgb(20, 110, 190);
+  color: var(--link);
 }
 
 a:hover {
@@ -125,25 +142,25 @@ hh {
 #intro {
   padding-top: 6em;
   display: flex;
+  align-items: flex-start;
 }
 
 #intro-text {
   width: 55em;
-  float: left;
 }
 
 #intro-image {
-  margin: 2.5em 0 0 2em;
-  width: 12em;
-  height: 12em;
-  float: left;
+  margin: 5.5em 0 0 2em;
+  width: 15em;
+  height: 15em;
+  flex-shrink: 0;
   overflow: hidden;
   border-radius: 1em;
-  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1); /* Adds a slight shadow */
+  box-shadow: 4px 4px 8px var(--shadow);
 }
 
 #intro-image img {
-  width: 12em;
+  width: 15em;
 }
 
 /**************************************************/
@@ -162,11 +179,11 @@ h2 {
   font-size: 1.6em;
   line-height: 2.4em;
   margin-top: 0.5em;
-  color: #a0a8b0;
+  color: var(--text-muted);
 }
 
 .selected h2 {
-  color: #150c21;
+  color: var(--text);
 }
 
 .button {
@@ -174,7 +191,7 @@ h2 {
   cursor: pointer;
   border: none;
   background: none;
-  color: #a0a8b0;
+  color: var(--text-muted);
   font-size: 1.6em;
   line-height: 2.4em;
   margin-top: 0.5em;
@@ -184,12 +201,12 @@ h2 {
 }
 
 .button:hover {
-  color: #150c21;
+  color: var(--text);
 }
 
 .button:active,
 .button.is-checked {
-  color: #150c21;
+  color: var(--text);
 }
 
 .button-group:after {
@@ -225,7 +242,7 @@ h2 {
 .list-item p.date {
   display: inline;
   width: 8em;
-  color: #a0a8b0;
+  color: var(--text-muted);
 }
 
 /**************************************************/
@@ -269,11 +286,11 @@ h2 {
 }
 
 .toggle-button a {
-  color: #a0a8b0;
+  color: var(--text-muted);
 }
 
 .toggle-button a:hover {
-  color: rgb(20, 110, 190);
+  color: var(--link);
 }
 
 /**************************************************/
@@ -296,6 +313,7 @@ h2 {
   border-radius: 5px;
   width: 100%;
   height: 100%;
+  background-color: #ffffff;
 }
 
 .thumbnail video {
@@ -311,11 +329,11 @@ h3 {
 }
 
 h3 a {
-  color: #150c21;
+  color: var(--text);
 }
 
 h3 a:hover {
-  color: rgb(20, 110, 190);
+  color: var(--link);
 }
 
 .publication {
@@ -325,7 +343,7 @@ h3 a:hover {
 .publication p {
   font-size: 1em;
   line-height: 1.5em;
-  color: #a0a8b0;
+  color: var(--text-muted);
 }
 
 .project-description {
@@ -342,7 +360,7 @@ h3 a:hover {
 }
 
 #education h2 {
-  color: #150c21;
+  color: var(--text);
   margin-bottom: 0.5em;
 }
 
@@ -373,21 +391,56 @@ h3 a:hover {
 }
 
 .education-details h3 a {
-  color: #150c21;
+  color: var(--text);
 }
 
 .education-details p {
   font-size: 1em;
   line-height: 1.5em;
-  color: #a0a8b0;
+  color: var(--text-muted);
 }
 
 /**************************************************/
 /* Subtle footer at the bottom of the page. */
 
 #footer {
-  color: #a0a8b0;
+  color: var(--text-muted);
   position: absolute;
   bottom: 0;
   line-height: 2.5em;
+}
+
+/* Override inline styles in dark mode */
+[data-theme="dark"] a[style*="color: black"] {
+  color: var(--text) !important;
+}
+
+[data-theme="dark"] a[style*="color: #a0a8b0"] {
+  color: var(--text-muted) !important;
+}
+
+/* Theme toggle button */
+#theme-toggle {
+  position: fixed;
+  top: 1.5em;
+  right: 1.5em;
+  background: none;
+  border: 2px solid var(--text-muted);
+  border-radius: 50%;
+  width: 2.4em;
+  height: 2.4em;
+  cursor: pointer;
+  font-size: 1em;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text);
+  transition: border-color 0.3s, color 0.3s;
+  z-index: 1000;
+}
+
+#theme-toggle:hover {
+  border-color: var(--link);
+  color: var(--link);
 }
