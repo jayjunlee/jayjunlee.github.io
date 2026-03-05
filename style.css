@@ -411,11 +411,11 @@ h3 a:hover {
 }
 
 /* Override inline styles in dark mode */
-[data-theme="dark"] a[style*="color: black"] {
+[data-theme="dark"] [style*="color: black"] {
   color: var(--text) !important;
 }
 
-[data-theme="dark"] a[style*="color: #a0a8b0"] {
+[data-theme="dark"] [style*="color: #a0a8b0"] {
   color: var(--text-muted) !important;
 }
 
