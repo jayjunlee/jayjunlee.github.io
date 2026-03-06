@@ -87,13 +87,14 @@ table {
 }
 
 #main {
-  width: 70em;
-  /* margin: 0px auto; */
+  max-width: 70em;
+  width: 100%;
+  padding: 0 1.5em;
+  box-sizing: border-box;
   position: relative;
   min-height: 100vh;
   margin-left: auto;
   margin-right: auto;
-  
 }
 
 a {
@@ -350,10 +351,6 @@ h3 a:hover {
   margin-top: 0.3em;
   width: 72%;
   float: left;
-}
-
-.project-description p {
-  white-space: nowrap;
 }
 
 /**************************************************/
