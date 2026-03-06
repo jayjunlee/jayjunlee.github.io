@@ -352,6 +352,10 @@ h3 a:hover {
   float: left;
 }
 
+.project-description p {
+  white-space: nowrap;
+}
+
 /**************************************************/
 /* Education section. */
 
