@@ -233,8 +233,12 @@ h2 {
 
 .list-item {
   width: 100%;
-  line-height: 1em;
+  line-height: 1.5em;
   margin-top: 1em;
+}
+
+.list-item.highlight {
+  white-space: nowrap;
 }
 
 .list-item p.date {
